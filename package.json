@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@cdktf/provider-github": "^8.0.0"
+  }
+}
