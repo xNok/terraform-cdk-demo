@@ -28,5 +28,5 @@ GITHUB_TOKEN=
 Deploy the Stack
 
 ```
-cdktf deploy
+cdktf deploy --var='repoId=you/your-repo'
 ```
