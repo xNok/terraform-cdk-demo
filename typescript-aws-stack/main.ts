@@ -1,5 +1,5 @@
 import { Construct } from "constructs";
-import { App, TerraformStack, CloudBackend, NamedCloudWorkspace, TerraformOutput } from "cdktf";
+import { App, TerraformStack, CloudBackend, NamedCloudWorkspace, TerraformOutput, TerraformVariable } from "cdktf";
 import { AwsProvider } from "@cdktf/provider-aws/lib/provider";
 import { GithubProvider } from "@cdktf/provider-github/lib/provider"
 import { Instance } from "@cdktf/provider-aws/lib/instance";
@@ -16,18 +16,37 @@ class MyStack extends TerraformStack {
 
     new GithubProvider(this, "GitHub", {})
 
+    // Variables 
+    const imageId = new TerraformVariable(this, "imageId", {
+      type: "string",
+      default: "ami-01456a894f71116f2",
+      description: "What AMI to use to create an instance",
+    });
+
+    const imageSize = new TerraformVariable(this, "imageSize", {
+      type: "string",
+      default: "t2.micro",
+      description: "What size to use to create an instance",
+    });
+
+    const repoId = new TerraformVariable(this, "repoId", {
+      type: "string",
+      default: "xNok/terraform-cdk-demo",
+      description: "Which repository manage this instance",
+    });
+
     // AWS
     const ec2Instance = new Instance(this, "compute", {
-      ami: "ami-01456a894f71116f2",
-      instanceType: "t2.micro",
+      ami: imageId.value,
+      instanceType: imageSize.value,
       tags: {
-        "repo": "xNok/terraform-cdk-demo",
+        "repo": repoId.value,
       }
     });
 
     // GITHUB
     const repo = new DataGithubRepository(this, "repo", {
-      fullName:  "xNok/terraform-cdk-demo",
+      fullName:  repoId.value,
     })
 
     new ActionsVariable(this, "action_variavle_public_ip", {
