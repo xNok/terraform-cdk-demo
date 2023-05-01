@@ -20,6 +20,9 @@ class MyStack extends TerraformStack {
     const ec2Instance = new Instance(this, "compute", {
       ami: "ami-01456a894f71116f2",
       instanceType: "t2.micro",
+      tags: {
+        "repo": "xNok/terraform-cdk-demo",
+      }
     });
 
     // GITHUB
@@ -27,7 +30,7 @@ class MyStack extends TerraformStack {
       fullName:  "xNok/terraform-cdk-demo",
     })
 
-    new ActionsVariable(this, "public_ip", {
+    new ActionsVariable(this, "action_variavle_public_ip", {
       repository: repo.name,
       value: ec2Instance.publicIp,
       variableName:"PUBLIC_IP"
