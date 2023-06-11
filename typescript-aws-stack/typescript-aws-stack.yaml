@@ -1,0 +1,3 @@
+imageId: "ami-01456a894f71116f2"
+imageSize: "t2.micro"
+repoId: "xNok/terraform-cdk-demo"
