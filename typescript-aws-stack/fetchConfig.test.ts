@@ -4,10 +4,9 @@ import fetch from 'node-fetch';
 import 'fetch-mock-jest';
 
 jest.mock(
-    'node-fetch', 
+    'node-fetch',
     () => require('fetch-mock-jest').sandbox(),
 );
-
 const fetchMock = (fetch as unknown) as FetchMockStatic;
 
 test('fetch config as yaml', () => {
@@ -20,8 +19,11 @@ test('fetch config as yaml', () => {
 });
 
 test('fetch config as api', () => {
-    fetchMock.reset()
-    fetchMock.get('https://api.example.com/typescript-aws-stack', { value: 1234 });
+    fetchMock.get('https://api.example.com/typescript-aws-stack', {
+        "imageId": "ami-01456a894f71116f2",
+        "imageSize": "t2.micro",
+        "repoId": "xNok/terraform-cdk-demo"
+    });
 
     fetchConfigApi("typescript-aws-stack")
     .then(config => expect(config).toStrictEqual({

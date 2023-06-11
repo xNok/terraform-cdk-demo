@@ -16,7 +16,6 @@ export function fetchConfig(stack: string): Config {
 export async function fetchConfigApi(stack: string): Promise<Config> {
     const response = await fetch('https://api.example.com/' + stack);
     const config = await response.json() as Config;
-
     return config
 }
 
