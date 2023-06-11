@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "@cdktf/provider-github": "^8.0.0"
+  },
+  "devDependencies": {
+    "fetch-mock": "^9.11.0"
   }
 }
