@@ -1,6 +1,6 @@
 # Terrafrom CDK Demo
 
-Infrastructure as Code Made Easy: A Beginner's Guide to Terraform CDK
+This repos is the source code for the following tutorial: [Infrastructure as Code Made Easy: A Beginner's Guide to Terraform CDK](https://earthly.dev/blog/iac-terraform-cdk/)
 
 ## Running the demo
 
